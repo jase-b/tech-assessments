@@ -3,7 +3,8 @@ export default {
     src: "/",
   },
   buildOptions: {
-    metaUrlPath: "snowpack", // The '_' in the default name of '_snowpack' causes error when loading an extension directory.
+    metaUrlPath: "snowpack", // '_' in default name '_snowpack' causes error when loading an extension directory.
+    out: "dist",
     watch: true,
   },
 };
