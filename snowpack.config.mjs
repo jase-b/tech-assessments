@@ -7,4 +7,9 @@ export default {
     out: "dist",
     watch: true,
   },
+  optimize: {
+    bundle: true,
+    minify: true,
+    target: "es2020",
+  },
 };
