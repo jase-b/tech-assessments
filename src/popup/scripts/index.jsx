@@ -1,13 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-const App = () => {
-  return (
-    <main>
-      <h1>Welcome to the Popup! 👋</h1>
-    </main>
-  );
-};
+import App from "./App/App";
 
 ReactDOM.render(
   <React.StrictMode>
