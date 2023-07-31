@@ -10,5 +10,8 @@
   "description": "Boilerplate code for Chrome extension projects.",
   "manifest_version": 3,
   "name": "Chrome Extension Boilerplate",
+  "permissions": [
+    "storage"
+  ],
   "version": "0.0.1"
 }
