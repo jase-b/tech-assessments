@@ -25,6 +25,7 @@
     "@types/chrome": "^0.0.242",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
+    "@types/react-redux": "^7.1.25",
     "@types/snowpack-env": "^2.3.4",
     "snowpack": "^3.7.1",
     "typescript": "^5.1.6"
