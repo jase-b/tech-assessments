@@ -1,5 +1,5 @@
 @import "./_reset.css";
 
 body {
-  background-color: darkslategray;
+  background: linear-gradient(0deg, rgba(0,219,255,1) 0%, rgba(4,151,208,1) 26%, rgba(10,54,141,1) 100%);
 }
