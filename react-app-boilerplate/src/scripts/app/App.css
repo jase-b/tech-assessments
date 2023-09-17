@@ -1,0 +1,44 @@
+header {
+  height: 3rem;
+  width: 100%;
+}
+
+main {
+  background-color: rgba(255, 255, 255, .7);
+  border: 2px solid rgb(120, 120, 120);
+  border-radius: 20px;
+  display: grid;
+  height: 700px;
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 5rem;
+  place-items: center;
+  width: 100%;
+}
+
+.drop-zone {
+  border: 4px dashed gray;
+  cursor: pointer;
+  display: grid;
+  height: 100%;
+  place-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+}
+
+.drop-zone__text {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#file-input {
+  display: none;
+}
+
+.canvas {
+  border: 1px solid rgb(68, 68, 97);
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+}
