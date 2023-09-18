@@ -1,0 +1,9 @@
+[class*=fa-circle-arrow] {
+  cursor: pointer;
+  font-size: 4rem;
+}
+
+[class*=fa-circle-arrow].disabled {
+  cursor: default;
+  opacity: .3;
+}
