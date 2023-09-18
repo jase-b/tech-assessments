@@ -1,7 +1,7 @@
 export default {
   buildOptions: {
     out: "dist",
-    watch: true,
+    watch: false,
   },
   mount: {
     src: "/",
