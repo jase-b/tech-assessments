@@ -29,7 +29,7 @@ main {
   font-size: 3rem;
 }
 
-.buttons-wrapper {
+.controls-wrapper {
   align-items: center;
   display: flex;
 }
@@ -43,16 +43,6 @@ main {
 .arrow-buttons {
   align-items: center;
   display: flex;
-}
-
-[class*=fa-circle-arrow] {
-  cursor: pointer;
-  font-size: 4rem;
-}
-
-[class*=fa-circle-arrow].disabled {
-  cursor: default;
-  opacity: .3;
 }
 
 .page-tracker {

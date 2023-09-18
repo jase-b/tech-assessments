@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import Pagination from "./ui/Controls/Pagination";
 import './App.css';
 
 const App = () => {
   const [tiff, setTiff] = useState(null);
-  const [currentPage, setCurrentPage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleFileInputChange = (e) => {
@@ -41,6 +41,18 @@ const App = () => {
     setCurrentPage(pageNum);
   };
 
+  const viewPrevTiff = () => {
+    if (currentPage > 1) {
+      setPageNumber(currentPage - 1);
+    }
+  };
+
+  const viewNextTiff = () => {
+    if (currentPage < totalPages) {
+      setPageNumber(currentPage + 1);
+    }
+  };
+
   useEffect(() => {
     if (tiff) {
       addTiffCanvastoViewer();
@@ -55,12 +67,26 @@ const App = () => {
             <header className='viewer-header'>
               <h1>TIFF Viewer</h1>
               {tiff && (
-                <div className='buttons-wrapper'>
+                <div className='controls-wrapper'>
                   <i className="fa-solid fa-arrows-to-dot" onClick={() => resetTransform()}></i>
                   <div className='arrow-buttons'>
-                    <i className={["fa-solid", "fa-circle-arrow-left", currentPage === 1 ? 'disabled' : ''].join(" ")} onClick={() => currentPage > 1 && setPageNumber(currentPage - 1)}></i>
+                    <Pagination
+                      direction={'left'}
+                      disabled={currentPage === 1}
+                      onClick={() => {
+                        viewPrevTiff();
+                        resetTransform();
+                      }}
+                    />
                     <p className='page-tracker'>{currentPage} / {totalPages}</p>
-                    <i className={['fa-solid ', 'fa-circle-arrow-right', currentPage === totalPages ? 'disabled' : ''].join(" ")} onClick={() => currentPage < totalPages && setPageNumber(currentPage + 1)}></i>
+                      <Pagination
+                        direction={'right'}
+                        disabled={currentPage === totalPages}
+                        onClick={() => {
+                          viewNextTiff();
+                          resetTransform();
+                        }}
+                      />
                   </div>
                 </div>
               )}
