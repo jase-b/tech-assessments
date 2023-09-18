@@ -12,6 +12,10 @@ main {
   width: 100%;
 }
 
+.transform-wrapper {
+  border: 1px solid rgb(56, 57, 57);
+}
+
 .viewer-header {
   align-items: center;
   display: flex;
@@ -28,7 +32,17 @@ main {
 .buttons-wrapper {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+}
+
+[class*=fa-arrows-to-dot] {
+  cursor: pointer;
+  font-size: 3.5rem;
+  margin-right: 5rem;
+}
+
+.arrow-buttons {
+  align-items: center;
+  display: flex;
 }
 
 [class*=fa-circle-arrow] {
@@ -38,12 +52,12 @@ main {
 
 [class*=fa-circle-arrow].disabled {
   cursor: default;
-  opacity: .4;
+  opacity: .3;
 }
 
 .page-tracker {
   font-size: 2rem;
-  margin: 0 2rem;
+  margin: 0 1.5rem;
 }
 
 .drop-zone {
@@ -83,7 +97,6 @@ main {
 }
 
 .canvas {
-  border: 1px solid rgb(68, 68, 97);
   height: 100%;
   overflow: auto;
   width: 100%;
