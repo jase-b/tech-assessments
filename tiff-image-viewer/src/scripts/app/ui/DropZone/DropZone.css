@@ -1,0 +1,30 @@
+.drop-zone {
+  border: 4px dashed gray;
+  cursor: pointer;
+  display: grid;
+  height: 100%;
+  place-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+}
+
+.drop-zone__content-wrapper {
+  display: grid;
+  margin: 2rem 0 3rem;
+  place-items: center;
+}
+
+.drop-zone__text {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.fa-upload {
+  font-size: 4rem;
+  margin-top: 1rem;
+}
+
+#file-input {
+  display: none;
+}

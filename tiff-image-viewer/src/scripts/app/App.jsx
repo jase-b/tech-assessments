@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Pagination, ResetView } from "./ui/Controls";
+import DropZone from "./ui/DropZone";
 import './App.css';
 
 const App = () => {
@@ -8,7 +9,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  const handleFileInputChange = (e) => {
+  const dropZonehandler = (e) => {
     const file = e.target.files[0];
 
     file?.arrayBuffer().then(buffer => {
@@ -86,15 +87,7 @@ const App = () => {
         {tiff && (
           <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>
         )}
-        {!tiff && (
-          <label className='drop-zone' htmlFor='file-input'>
-            <div className='drop-zone__content-wrapper'>
-              <p className='drop-zone__text'>Click to Upload</p>
-              <i className="fa-solid fa-upload"></i>
-            </div>
-            <input accept="image/tiff" aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
-          </label>
-        )}
+        {!tiff && <DropZone dropZonehandler={dropZonehandler}/>}
         <TransformComponent wrapperClass='transform-wrapper'>
           {tiff && <div className='canvas'></div>}
         </TransformComponent>
