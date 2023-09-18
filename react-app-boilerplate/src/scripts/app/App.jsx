@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => {
   const [tiff, setTiff] = useState(null);
-  const [currentPage, setCurrentPage] = useState((tiff?.currentDirectory() || 0) + 1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
   const handleFileInputChange = (e) => {
@@ -15,7 +15,6 @@ const App = () => {
         const tiff = new Tiff({ buffer });
 
         setTiff(tiff);
-        console.log(tiff?.currentDirectory())
         totalPages === 0 && setTotalPages(tiff.countDirectory());
       })
     }
@@ -30,6 +29,7 @@ const App = () => {
 
   const resetPageViewer = () => {
     setTiff(null);
+    setCurrentPage(1);
     setTotalPages(0);
   };
 
@@ -52,7 +52,10 @@ const App = () => {
         {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetPageViewer}></i>}
         {!tiff ? (
           <label className='drop-zone' htmlFor='file-input'>
-            <p className='drop-zone__text'>Click to Upload</p>
+            <div className='drop-zone__content-wrapper'>
+              <p className='drop-zone__text'>Click to Upload</p>
+              <i className="fa-solid fa-upload"></i>
+            </div>
             <input aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
           </label>
         ) : <div className='canvas'></div>}

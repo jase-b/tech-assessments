@@ -28,9 +28,19 @@ main {
   width: 100%;
 }
 
+.drop-zone__content-wrapper {
+  display: grid;
+  place-items: center;
+}
+
 .drop-zone__text {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
+}
+
+.fa-upload {
+  font-size: 4rem;
+  margin-top: 1rem;
 }
 
 #file-input {
@@ -46,7 +56,7 @@ main {
 
 .fa-circle-xmark {
   font-size: 3rem;
-  opacity: .4;
+  opacity: .2;
   position: absolute;
   right: 1.1rem;
   top: 1.1rem;
@@ -74,7 +84,7 @@ main {
 
 [class*=fa-circle-arrow].disabled {
   cursor: default;
-  opacity: .5;
+  opacity: .4;
 }
 
 .page-tracker {
