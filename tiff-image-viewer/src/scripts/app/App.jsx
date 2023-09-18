@@ -98,7 +98,7 @@ const App = () => {
                   <p className='drop-zone__text'>Click to Upload</p>
                   <i className="fa-solid fa-upload"></i>
                 </div>
-                <input aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
+                <input accept="image/tiff" aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
               </label>
             )}
             <TransformComponent wrapperClass='transform-wrapper'>
