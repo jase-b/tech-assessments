@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import './App.css';
 
 const App = () => {
@@ -10,24 +11,22 @@ const App = () => {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
 
-    if (file) {
-      file.arrayBuffer().then(buffer => {
-        const tiff = new Tiff({ buffer });
+    file?.arrayBuffer().then(buffer => {
+      const tiff = new Tiff({ buffer });
 
-        setTiff(tiff);
-        totalPages === 0 && setTotalPages(tiff.countDirectory());
-      })
-    }
+      setTiff(tiff);
+      totalPages === 0 && setTotalPages(tiff.countDirectory());
+    })
   };
 
-  const addTiffCanvastoPage = () => {
+  const addTiffCanvastoViewer = () => {
     const canvas = document.querySelector('.canvas');
 
     canvas.textContent = '';
     canvas.append(tiff.toCanvas());
   };
 
-  const resetPageViewer = () => {
+  const resetViewer = () => {
     setTiff(null);
     setCurrentPage(1);
     setTotalPages(0);
@@ -35,21 +34,30 @@ const App = () => {
 
   const setPageNumber = (pageNum) => {
     tiff.setDirectory(pageNum - 1);
+    addTiffCanvastoViewer();
     setCurrentPage(pageNum);
-    addTiffCanvastoPage();
   };
 
   useEffect(() => {
     if (tiff) {
-      addTiffCanvastoPage();
+      addTiffCanvastoViewer();
     }
   }, [tiff]);
 
   return (
     <>
-      <header></header>
       <main>
-        {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetPageViewer}></i>}
+        <header className='viewer-header'>
+          <h1>TIFF Viewer</h1>
+          {tiff && (
+            <div className='buttons-wrapper'>
+              <i className={["fa-solid", "fa-circle-arrow-left", currentPage === 1 ? 'disabled' : ''].join(" ")} onClick={() => currentPage > 1 && setPageNumber(currentPage - 1)}></i>
+              <p className='page-tracker'>Page {currentPage} / {totalPages}</p>
+              <i className={['fa-solid ', 'fa-circle-arrow-right', currentPage === totalPages ? 'disabled' : ''].join(" ")} onClick={() => currentPage < totalPages && setPageNumber(currentPage + 1)}></i>
+            </div>
+          )}
+        </header>
+        {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>}
         {!tiff ? (
           <label className='drop-zone' htmlFor='file-input'>
             <div className='drop-zone__content-wrapper'>
@@ -58,13 +66,12 @@ const App = () => {
             </div>
             <input aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
           </label>
-        ) : <div className='canvas'></div>}
-        {tiff && (
-          <div className='buttons-wrapper'>
-            <i className={["fa-solid", "fa-circle-arrow-left", currentPage === 1 ? 'disabled' : ''].join(" ")} onClick={() => currentPage > 1 && setPageNumber(currentPage - 1)}></i>
-            <p className='page-tracker'>Page {currentPage} / {totalPages}</p>
-            <i className={['fa-solid ', 'fa-circle-arrow-right', currentPage === totalPages ? 'disabled' : ''].join(" ")} onClick={() => currentPage < totalPages && setPageNumber(currentPage + 1)}></i>
-          </div>
+        ) : (
+          <TransformWrapper>
+            <TransformComponent wrapperClass="canvas-wrapper">
+              <div className='canvas'></div>
+            </TransformComponent>
+          </TransformWrapper>
         )}
       </main>
     </>
