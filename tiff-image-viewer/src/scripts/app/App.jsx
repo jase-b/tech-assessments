@@ -38,19 +38,20 @@ const App = () => {
 
   const setPageNumber = (pageNum) => {
     tiff.setDirectory(pageNum - 1);
-    addTiffCanvastoViewer();
     setCurrentPage(pageNum);
   };
 
   const viewPrevTiff = () => {
     if (currentPage > 1) {
       setPageNumber(currentPage - 1);
+      addTiffCanvastoViewer();
     }
   };
 
   const viewNextTiff = () => {
     if (currentPage < totalPages) {
       setPageNumber(currentPage + 1);
+      addTiffCanvastoViewer();
     }
   };
 
