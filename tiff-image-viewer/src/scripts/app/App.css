@@ -34,12 +34,6 @@ main {
   display: flex;
 }
 
-[class*=fa-arrows-to-dot] {
-  cursor: pointer;
-  font-size: 3.5rem;
-  margin-right: 5rem;
-}
-
 .arrow-buttons {
   align-items: center;
   display: flex;

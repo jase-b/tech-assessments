@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import Pagination from "./ui/Controls/Pagination";
+import { Pagination, ResetView } from "./ui/Controls";
 import './App.css';
 
 const App = () => {
@@ -66,7 +66,7 @@ const App = () => {
           <h1>TIFF Viewer</h1>
           {tiff && (
             <div className='controls-wrapper'>
-              <i className="fa-solid fa-arrows-to-dot" onClick={() => resetTransform()}></i>
+              <ResetView />
               <div className='arrow-buttons'>
                 <Pagination
                   direction={'left'}
@@ -83,7 +83,9 @@ const App = () => {
             </div>
           )}
         </header>
-        {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>}
+        {tiff && (
+          <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>
+        )}
         {!tiff && (
           <label className='drop-zone' htmlFor='file-input'>
             <div className='drop-zone__content-wrapper'>
