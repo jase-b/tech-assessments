@@ -62,50 +62,40 @@ const App = () => {
   return (
     <main>
       <TransformWrapper>
-        {({ resetTransform }) => (
-          <>
-            <header className='viewer-header'>
-              <h1>TIFF Viewer</h1>
-              {tiff && (
-                <div className='controls-wrapper'>
-                  <i className="fa-solid fa-arrows-to-dot" onClick={() => resetTransform()}></i>
-                  <div className='arrow-buttons'>
-                    <Pagination
-                      direction={'left'}
-                      disabled={currentPage === 1}
-                      onClick={() => {
-                        viewPrevTiff();
-                        resetTransform();
-                      }}
-                    />
-                    <p className='page-tracker'>{currentPage} / {totalPages}</p>
-                      <Pagination
-                        direction={'right'}
-                        disabled={currentPage === totalPages}
-                        onClick={() => {
-                          viewNextTiff();
-                          resetTransform();
-                        }}
-                      />
-                  </div>
-                </div>
-              )}
-            </header>
-            {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>}
-            {!tiff && (
-              <label className='drop-zone' htmlFor='file-input'>
-                <div className='drop-zone__content-wrapper'>
-                  <p className='drop-zone__text'>Click to Upload</p>
-                  <i className="fa-solid fa-upload"></i>
-                </div>
-                <input accept="image/tiff" aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
-              </label>
-            )}
-            <TransformComponent wrapperClass='transform-wrapper'>
-              {tiff && <div className='canvas'></div>}
-            </TransformComponent>
-          </>
+        <header className='viewer-header'>
+          <h1>TIFF Viewer</h1>
+          {tiff && (
+            <div className='controls-wrapper'>
+              <i className="fa-solid fa-arrows-to-dot" onClick={() => resetTransform()}></i>
+              <div className='arrow-buttons'>
+                <Pagination
+                  direction={'left'}
+                  disabled={currentPage === 1}
+                  clickHandler={viewPrevTiff}
+                />
+                <p className='page-tracker'>{currentPage} / {totalPages}</p>
+                  <Pagination
+                    direction={'right'}
+                    disabled={currentPage === totalPages}
+                    clickHandler={viewNextTiff}
+                  />
+              </div>
+            </div>
+          )}
+        </header>
+        {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetViewer}></i>}
+        {!tiff && (
+          <label className='drop-zone' htmlFor='file-input'>
+            <div className='drop-zone__content-wrapper'>
+              <p className='drop-zone__text'>Click to Upload</p>
+              <i className="fa-solid fa-upload"></i>
+            </div>
+            <input accept="image/tiff" aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
+          </label>
         )}
+        <TransformComponent wrapperClass='transform-wrapper'>
+          {tiff && <div className='canvas'></div>}
+        </TransformComponent>
       </TransformWrapper>
 
 
