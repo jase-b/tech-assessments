@@ -28,6 +28,11 @@ const App = () => {
     canvas.append(tiff.toCanvas());
   };
 
+  const resetPageViewer = () => {
+    setTiff(null);
+    setTotalPages(0);
+  };
+
   const setPageNumber = (pageNum) => {
     tiff.setDirectory(pageNum - 1);
     setCurrentPage(pageNum);
@@ -44,17 +49,20 @@ const App = () => {
     <>
       <header></header>
       <main>
+        {tiff && <i className="fa-solid fa-circle-xmark" onClick={resetPageViewer}></i>}
         {!tiff ? (
           <label className='drop-zone' htmlFor='file-input'>
             <p className='drop-zone__text'>Click to Upload</p>
             <input aria-label="file-input" id='file-input' onChange={handleFileInputChange} type='file' />
           </label>
         ) : <div className='canvas'></div>}
-        <div className='buttons-wrapper'>
-          <i className={["fa-solid", "fa-circle-arrow-left", currentPage === 1 ? 'disabled' : ''].join(" ")} onClick={() => currentPage > 1 && setPageNumber(currentPage - 1)}></i>
-          <p className='page-tracker'>Page {currentPage} / {totalPages}</p>
-          <i className={['fa-solid ', 'fa-circle-arrow-right', currentPage === totalPages ? 'disabled' : ''].join(" ")} onClick={() => currentPage < totalPages && setPageNumber(currentPage + 1)}></i>
-        </div>
+        {tiff && (
+          <div className='buttons-wrapper'>
+            <i className={["fa-solid", "fa-circle-arrow-left", currentPage === 1 ? 'disabled' : ''].join(" ")} onClick={() => currentPage > 1 && setPageNumber(currentPage - 1)}></i>
+            <p className='page-tracker'>Page {currentPage} / {totalPages}</p>
+            <i className={['fa-solid ', 'fa-circle-arrow-right', currentPage === totalPages ? 'disabled' : ''].join(" ")} onClick={() => currentPage < totalPages && setPageNumber(currentPage + 1)}></i>
+          </div>
+        )}
       </main>
     </>
   );
